@@ -1,4 +1,4 @@
-# Sensor Layout Studio 0.1.0
+# Sensor Layout Studio 0.1.1
 
 First public preview: place cameras and LiDARs in 3D, inspect shared visibility and blind spots, and export relative transforms.
 

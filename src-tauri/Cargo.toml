@@ -1,6 +1,6 @@
 [package]
 name = "sensor-layout-studio"
-version = "0.1.0"
+version = "0.1.1"
 description = "A local 3D workspace for camera and LiDAR placement"
 authors = ["Sensor Layout Studio contributors"]
 edition = "2021"
