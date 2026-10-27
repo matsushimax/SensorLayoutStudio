@@ -26,9 +26,11 @@ A 3D workspace for planning camera and LiDAR placement on vehicles and robots. A
 | Use your own vehicle or equipment      | GLB, STL and STEP import with origin, orientation and scale adjustment                         |
 | Save and use the result                | Scene JSON, transform preview, quaternion and 4×4 matrix export                                |
 
-## Try it locally in your browser
+## Try it in your browser
 
-**Local browser use is available now. A hosted GitHub Pages demo and GitHub Releases downloads have not yet been published.**
+**[Launch the browser demo](https://matsushimax.github.io/SensorLayoutStudio/)** — no installation needed; start with the built-in scene. Windows downloads are being prepared.
+
+### Run locally
 
 Install **Node.js 22.12+ (24 recommended)** and use a WebGL-capable browser. Download or clone this repository, then run these commands in its folder. Rust is not needed for the browser version.
 
