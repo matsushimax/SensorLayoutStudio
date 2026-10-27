@@ -1,0 +1,49 @@
+{
+  "name": "sensor-layout-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/prepare-cad.mjs",
+    "prebuild": "node scripts/prepare-cad.mjs",
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:native-close": "node scripts/native-close-regression.mjs",
+    "examples": "node scripts/create-examples.mjs && node scripts/create-cad-examples.mjs",
+    "notices": "node scripts/create-notices.mjs",
+    "format": "prettier --write src scripts e2e *.ts *.json .github README*.md docs/*.md examples/*.json src-tauri/*.json src-tauri/capabilities/*.json",
+    "format:check": "prettier --check src scripts e2e *.ts *.json .github README*.md docs/*.md examples/*.json src-tauri/*.json src-tauri/capabilities/*.json",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.0.0",
+    "@react-three/fiber": "^9.0.0",
+    "@tauri-apps/api": "^2.0.0",
+    "@tauri-apps/plugin-dialog": "^2.0.0",
+    "@tauri-apps/plugin-fs": "^2.0.0",
+    "lucide-react": "^0.468.0",
+    "occt-import-js": "0.0.23",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "three": "^0.180.0",
+    "three-mesh-bvh": "^0.8.3",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@tauri-apps/cli": "^2.0.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.180.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "prettier": "^3.9.10",
+    "typescript": "~5.9.0",
+    "vite": "^7.0.0",
+    "vitest": "^5.0.5"
+  }
+}

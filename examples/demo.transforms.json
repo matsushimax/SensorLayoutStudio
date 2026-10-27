@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "0.1.0",
+  "unit": "m",
+  "baseFrame": "base_link",
+  "convention": {
+    "axes": "X forward, Y left, Z up; right-handed",
+    "matrixStorage": "row-major",
+    "vectors": "column",
+    "quaternionOrder": "xyzw",
+    "transformDirection": "T_A_B transforms coordinates in B into A: p_A = T_A_B * p_B",
+    "rpy": "fixed-axis XYZ; R = Rz(yaw) * Ry(pitch) * Rx(roll)"
+  },
+  "sensors": [
+    {
+      "sensorId": "sensor-1",
+      "frame": "front_camera",
+      "parentFrame": "base_link",
+      "translationM": [1.65, 0, 1.1],
+      "quaternionXYZW": [0, 0, 0, 1],
+      "matrix": [1, 0, 0, 1.65, 0, 1, 0, 0, 0, 0, 1, 1.1, 0, 0, 0, 1]
+    },
+    {
+      "sensorId": "sensor-2",
+      "frame": "roof_lidar",
+      "parentFrame": "base_link",
+      "translationM": [0, 0, 1.95],
+      "quaternionXYZW": [0, 0, 0, 1],
+      "matrix": [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1.95, 0, 0, 0, 1]
+    }
+  ],
+  "relativeTransforms": [
+    {
+      "fromSensorId": "sensor-2",
+      "toSensorId": "sensor-1",
+      "notation": "T_front_camera_roof_lidar",
+      "translationM": [-1.65, 0, 0.8499999999999999],
+      "quaternionXYZW": [0, 0, 0, 1],
+      "matrix": [1, 0, 0, -1.65, 0, 1, 0, 0, 0, 0, 1, 0.8499999999999999, 0, 0, 0, 1]
+    },
+    {
+      "fromSensorId": "sensor-1",
+      "toSensorId": "sensor-2",
+      "notation": "T_roof_lidar_front_camera",
+      "translationM": [1.65, 0, -0.8499999999999999],
+      "quaternionXYZW": [0, 0, 0, 1],
+      "matrix": [1, 0, 0, 1.65, 0, 1, 0, 0, 0, 0, 1, -0.8499999999999999, 0, 0, 0, 1]
+    }
+  ],
+  "cameraOpticalFrame": {
+    "description": "T_cameraBody_cameraOptical; body X forward/Y left/Z up, optical Z forward/X right/Y down",
+    "matrix": [0, 0, 1, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 1]
+  }
+}

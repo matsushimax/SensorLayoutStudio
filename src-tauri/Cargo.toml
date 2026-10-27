@@ -1,0 +1,25 @@
+[package]
+name = "sensor-layout-studio"
+version = "0.1.0"
+description = "A local 3D workspace for camera and LiDAR placement"
+authors = ["Sensor Layout Studio contributors"]
+edition = "2021"
+license = "MIT"
+
+[lib]
+name = "sensor_layout_studio_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

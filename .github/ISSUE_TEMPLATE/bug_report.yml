@@ -1,0 +1,21 @@
+name: Bug report / 不具合報告
+description: Report an unexpected result or crash / 不具合やクラッシュを報告
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment / 環境
+      description: App version, OS, browser or desktop edition, GPU if known.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce / 再現手順
+      description: Describe steps, expected behavior and actual behavior. Attach only models you may share publicly.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or error messages / スクリーンショット・エラー

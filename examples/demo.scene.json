@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "0.1.0",
+  "unit": "m",
+  "baseFrame": "base_link",
+  "name": "Rover / sensor study",
+  "sensors": [
+    {
+      "id": "sensor-1",
+      "name": "front_camera",
+      "parentFrame": "base_link",
+      "pose": {
+        "positionM": [1.65, 0, 1.1],
+        "quaternionXYZW": [0, 0, 0, 1]
+      },
+      "params": {
+        "kind": "camera",
+        "horizontalFovDeg": 70,
+        "verticalFovDeg": 45,
+        "nearM": 0.15,
+        "farM": 5
+      },
+      "color": "#078f9f",
+      "visible": true,
+      "opacity": 0.13
+    },
+    {
+      "id": "sensor-2",
+      "name": "roof_lidar",
+      "parentFrame": "base_link",
+      "pose": {
+        "positionM": [0, 0, 1.95],
+        "quaternionXYZW": [0, 0, 0, 1]
+      },
+      "params": {
+        "kind": "lidar",
+        "azimuthStartDeg": -180,
+        "azimuthSpanDeg": 360,
+        "elevationMinDeg": -15,
+        "elevationMaxDeg": 15,
+        "nearM": 0.3,
+        "farM": 3.5
+      },
+      "color": "#db9c27",
+      "visible": true,
+      "opacity": 0.07
+    }
+  ],
+  "primitives": [
+    {
+      "id": "obstacle-1",
+      "name": "Target / crate",
+      "shape": "box",
+      "pose": {
+        "positionM": [4.4, 0.4, 0.55],
+        "quaternionXYZW": [0, 0, 0, 1]
+      },
+      "dimensionsM": [0.85, 0.85, 1.1],
+      "visible": true
+    },
+    {
+      "id": "obstacle-2",
+      "name": "Reference / bollard",
+      "shape": "cylinder",
+      "pose": {
+        "positionM": [0.6, 3.7, 0.6],
+        "quaternionXYZW": [0, 0, 0, 1]
+      },
+      "dimensionsM": [0.25, 0.25, 1.2],
+      "visible": true
+    }
+  ]
+}
