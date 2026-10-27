@@ -102,6 +102,8 @@ test('translation gizmo updates coordinates and a single undo restores the pose'
   page,
 }) => {
   await page.goto('/');
+  // Input/history are tested here; separate GPU tests cover occlusion rendering.
+  await page.getByLabel('Stop rays at surfaces').uncheck();
   await page.waitForTimeout(1600);
   const initial = await page.getByLabel('Position X', { exact: true }).inputValue();
   const before = await page.evaluate(async () => {
