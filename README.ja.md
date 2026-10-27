@@ -28,7 +28,7 @@
 
 ## まずブラウザーで試す
 
-**[ブラウザーで今すぐ試す](https://matsushimax.github.io/SensorLayoutStudio/)** — インストール不要。デモシーンからすぐに操作できます。Windows版の配布は準備中です。
+**[ブラウザーで今すぐ試す](https://matsushimax.github.io/SensorLayoutStudio/)** — インストール不要。デモシーンからすぐに操作できます。デスクトップで使う場合は **[Windows版をダウンロード](https://github.com/matsushimax/SensorLayoutStudio/releases/latest)**。
 
 ### ローカルで起動する場合
 
@@ -73,6 +73,15 @@ STL／STEPのサンプルは、読込後 **1 × 2 × 3 m** のブロックです
 
 このツールは**配置検討のための可視化**です。精度はモデルの三角形メッシュと描画解像度などに依存します。STEPの曲面もメッシュに近似します。面積・体積・カバレッジ率、検出確率、反射特性は計算しません。大規模モデルでの快適動作は未保証です。
 
+## Windows版を使う
+
+[Releases](https://github.com/matsushimax/SensorLayoutStudio/releases/latest) の **Assets** から選びます。利用するだけならNode.jsやRustは不要です。
+
+- **`windows-x64-portable.zip`**：ZIPをすべて展開して `sensor-layout-studio.exe` を起動。アプリのインストールは不要です。
+- **`windows-x64-setup.exe`**：インストーラーを実行してセットアップします。
+
+どちらもWebView2 Runtimeが必要です。未導入の場合は、セットアップ版が必要に応じて導入します（インターネット接続が必要）。現在の配布物は未署名のため、Windowsに発行元の警告が表示される場合があります。モデルファイルと保存したシーンJSONは手元に保管してください。
+
 ## Windowsアプリを開発・ビルドする
 
 Node.jsに加え、Rust stable MSVC、Visual Studio C++ Build Tools＋Windows SDK、WebView2が必要です。[Tauri公式の前提条件](https://v2.tauri.app/start/prerequisites/)を参照してください。
@@ -84,7 +93,7 @@ npm run tauri dev
 npm run tauri build
 ```
 
-実行ファイルは `src-tauri/target/release/sensor-layout-studio.exe`、インストーラーは `src-tauri/target/release/bundle/nsis/` に生成します。現在のビルドは未署名です。GitHub Actionsは検証・Windowsビルド・成果物保存に対応し、Releaseの自動公開は行いません。
+実行ファイルは `src-tauri/target/release/sensor-layout-studio.exe`、インストーラーは `src-tauri/target/release/bundle/nsis/` に生成します。GitHub Actionsは検証・Windowsビルドを実行し、バージョンタグからReleaseの下書きを作成します。[公開・配布手順](docs/publishing.md)も参照してください。
 
 ## 技術と検証
 

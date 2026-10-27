@@ -14,7 +14,7 @@ Copy-Item docs/licenses/* "$portable/licenses"
 Copy-Item examples/* "$portable/examples"
 Copy-Item docs/portable-readme.txt "$portable/README.txt"
 Compress-Archive -Path $portable -DestinationPath "$out/SensorLayoutStudio-$version-windows-x64-portable.zip" -Force
-$installers = @(Get-ChildItem src-tauri/target/release/bundle/nsis/*-setup.exe)
+$installers = @(Get-ChildItem "src-tauri/target/release/bundle/nsis/*_${version}_x64-setup.exe")
 if ($installers.Count -ne 1) { throw 'Expected exactly one NSIS installer.' }
 Copy-Item $installers[0].FullName "$out/SensorLayoutStudio-$version-windows-x64-setup.exe"
 $sources = @{

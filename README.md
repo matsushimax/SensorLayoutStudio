@@ -28,7 +28,7 @@ A 3D workspace for planning camera and LiDAR placement on vehicles and robots. A
 
 ## Try it in your browser
 
-**[Launch the browser demo](https://matsushimax.github.io/SensorLayoutStudio/)** — no installation needed; start with the built-in scene. Windows downloads are being prepared.
+**[Launch the browser demo](https://matsushimax.github.io/SensorLayoutStudio/)** — no installation needed; start with the built-in scene. Prefer a desktop app? **[Download for Windows](https://github.com/matsushimax/SensorLayoutStudio/releases/latest)**.
 
 ### Run locally
 
@@ -73,6 +73,15 @@ Scene JSON references model filenames rather than embedding the model bytes. Re-
 
 This is a **layout visualization tool**. Accuracy depends on the input triangle mesh, rendering resolution and numerical tolerances. STEP surfaces are tessellated too. The app does not compute area, volume, coverage percentages, detection probability or reflectance. Interactive performance with large production models has not been established.
 
+## Use the Windows app
+
+Choose a file under **Assets** on the [Releases page](https://github.com/matsushimax/SensorLayoutStudio/releases/latest). Node.js and Rust are not required to use the app.
+
+- **`windows-x64-portable.zip`**: extract the entire ZIP and run `sensor-layout-studio.exe`. No app installation required.
+- **`windows-x64-setup.exe`**: run the installer to set up the app.
+
+Both editions require WebView2 Runtime. If it is missing, the setup edition installs it as needed (Internet connection required). Builds are currently unsigned and Windows may show a publisher warning. Keep your model files alongside your saved scene JSON.
+
 ## Develop or build the Windows app
 
 In addition to Node.js, install Rust stable MSVC, Microsoft C++ Build Tools with the Windows SDK, and WebView2. See [Tauri's prerequisites](https://v2.tauri.app/start/prerequisites/).
@@ -84,7 +93,7 @@ npm run tauri dev
 npm run tauri build
 ```
 
-Executable: `src-tauri/target/release/sensor-layout-studio.exe`. Installer: `src-tauri/target/release/bundle/nsis/`. Local builds are unsigned. GitHub Actions runs checks and builds Windows artifacts; it does not automatically publish a Release.
+Executable: `src-tauri/target/release/sensor-layout-studio.exe`. Installer: `src-tauri/target/release/bundle/nsis/`. GitHub Actions runs checks, builds Windows artifacts and creates a draft Release from a version tag. See [publishing instructions](docs/publishing.md).
 
 ## Technology and validation
 
