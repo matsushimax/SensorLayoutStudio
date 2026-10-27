@@ -2,6 +2,12 @@ name: Build release
 on:
   push:
     tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag to package
+        required: true
+        type: string
 permissions:
   contents: read
 jobs:
@@ -9,8 +15,33 @@ jobs:
     runs-on: windows-latest
     permissions:
       contents: write
+      actions: read
+    env:
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref_name }}
+      - name: Require successful checks for this exact commit
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $version = (Get-Content package.json | ConvertFrom-Json).version
+          if ($env:RELEASE_TAG -ne "v$version") { throw 'Tag must match package.json version' }
+          $sha = git rev-parse HEAD
+          $verified = $false
+          for ($attempt = 0; $attempt -lt 60; $attempt++) {
+            $response = gh api "repos/$env:GITHUB_REPOSITORY/actions/workflows/check.yml/runs?head_sha=$sha&per_page=30"
+            if ($LASTEXITCODE -ne 0) { throw 'Could not retrieve check results' }
+            $runs = ($response | ConvertFrom-Json).workflow_runs
+            $success = @($runs | Where-Object { $_.head_sha -eq $sha -and $_.conclusion -eq 'success' })
+            if ($success.Count -gt 0) { $verified = $true; break }
+            $pending = @($runs | Where-Object { $_.status -ne 'completed' })
+            if ($runs.Count -gt 0 -and $pending.Count -eq 0) { throw 'Checks failed for this commit' }
+            Start-Sleep -Seconds 20
+          }
+          if (!$verified) { throw 'No successful Check and build run for this exact commit' }
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -20,10 +51,6 @@ jobs:
         with:
           workspaces: src-tauri -> target
       - run: npm ci
-      - run: npm run format:check
-      - run: npm test
-      - run: npx playwright install chromium
-      - run: npm run test:e2e
       - run: npm run tauri build
       - run: ./scripts/package-release.ps1
         shell: pwsh
@@ -38,8 +65,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           $version = (Get-Content package.json | ConvertFrom-Json).version
-          if ($env:GITHUB_REF_NAME -ne "v$version") { throw 'Tag must match package.json version' }
-          gh release create $env:GITHUB_REF_NAME --verify-tag --draft --title "Sensor Layout Studio $version" --notes-file docs/release-notes.md
+          gh release create $env:RELEASE_TAG --verify-tag --draft --title "Sensor Layout Studio $version" --notes-file docs/release-notes.md
           if ($LASTEXITCODE -ne 0) { throw 'Release creation failed' }
-          gh release upload $env:GITHUB_REF_NAME (Get-ChildItem release-artifacts -File).FullName
+          gh release upload $env:RELEASE_TAG (Get-ChildItem release-artifacts -File).FullName
           if ($LASTEXITCODE -ne 0) { throw 'Release upload failed' }

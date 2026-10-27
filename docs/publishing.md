@@ -22,7 +22,7 @@ Remove the environment variable before building the desktop edition: `Remove-Ite
 
 ## Windows release
 
-Keep versions in `package.json`, `package-lock.json`, `src-tauri/Cargo.toml`, `src-tauri/Cargo.lock` and `src-tauri/tauri.conf.json` aligned. Update `docs/release-notes.md`, then push a matching tag such as `v0.1.0`. `Build release` runs checks, builds the Windows app and prepares a **draft** GitHub Release.
+Keep versions in `package.json`, `package-lock.json`, `src-tauri/Cargo.toml`, `src-tauri/Cargo.lock` and `src-tauri/tauri.conf.json` aligned. Update `docs/release-notes.md`, push `main`, then push a matching tag such as `v0.1.1`. `Build release` requires a successful **Check and build** run for the exact tagged commit (including all browser tests on Linux and the Windows build), builds the Windows app and prepares a **draft** GitHub Release. Browser tests are not duplicated on the Windows packaging runner. You can also run the workflow manually from `main`, specifying an existing tag; it checks out that tag and enforces the same commit check.
 
 The release contains the portable ZIP, NSIS installer, dependency source archives, notices and SHA-256 checksums. Review the draft and test the downloaded ZIP/installer before publishing. Subsequent tag names must be new; do not move already published tags.
 
