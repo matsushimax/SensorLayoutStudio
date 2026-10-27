@@ -2,7 +2,9 @@ import { spawn } from 'node:child_process';
 import { resolve } from 'node:path';
 import { chromium, expect } from '@playwright/test';
 
-const executable = resolve('src-tauri/target/release/sensor-layout-studio.exe');
+const executable = resolve(
+  process.env.SENSOR_LAYOUT_TEST_EXE || 'src-tauri/target/release/sensor-layout-studio.exe',
+);
 const reproduce = process.argv.includes('--expect-blocked');
 const pause = (ms) => new Promise((done) => setTimeout(done, ms));
 
