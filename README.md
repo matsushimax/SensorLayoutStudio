@@ -1,3 +1,5 @@
+**English** / [日本語](README.ja.md)
+
 # Sensor Layout Studio
 
 **Move sensors. Adjust their field of view. See shared coverage and blind spots update.**
@@ -9,8 +11,6 @@
 ![Live app demo: changing camera position, FOV and range, then LiDAR position and range, updates shared visibility in purple and per-sensor blind spots in red hatching](docs/demo.gif)
 
 **① Move camera → ② Camera FOV → ③ Camera range → ④ Move LiDAR → ⑤ LiDAR range. Purple marks shared visibility; red hatching marks per-sensor blind spots.** Recorded from the actual application. The GIF plays at 4× speed with shorter interaction pauses. Occlusion and blind-spot highlighting are both ON, so shared visibility and blind spots update together.
-
-[日本語](README.ja.md)
 
 A 3D workspace for planning camera and LiDAR placement on vehicles and robots. Adjust a sensor's pose and sensing volume, inspect occlusion and shared visibility, then save the study and export coordinate transforms for downstream tools.
 
